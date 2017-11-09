@@ -1,10 +1,10 @@
-#Descriptive-Statistics
-
+Descriptive Statistics
+===================
 
 
 Easily calculate various stuff like **variability measurements** or drawing **graphs** and **histograms** etc.
 
-
+----------
 
 
 why?
@@ -23,10 +23,11 @@ Hell No! go get your grandma a new browser big fella :/
 
 #### Dependencies
  - [Plot.ly](https://plot.ly)
+ - [Materializecss.com](http://materializecss.com)
+ - [Simplestatistics.org](https://simplestatistics.org)
 
 
 -------------
-
 
 > And last but not least, all the credits go to prof.Akbari (not really I just saw her twice lmao)
 
