@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'isans';
+    src: url('./../font/IRANSans-Bold.eot?#') format('eot'), /* IE6–8 */
+    url('./../font/IRANSans-Bold.woff2') format('woff2'), /* Chrome36+, Opera24+*/
+    url('./../font/IRANSans-Bold.woff') format('woff');
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'isans';
+    src: url('./../fonts/IRANSANSExpanded.eot?#') format('eot'), /* IE6–8 */
+    url('./../font/IRANSANSExpanded.woff2') format('woff2'), /* Chrome36+, Opera24+*/
+    url('./../font/IRANSANSExpanded.woff') format('woff');
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    font-weight: normal;
+}
+body {
+    font-family: isans;
+    background: #f5f5f5
+}
+.navMenu {
+    background: red; /* For browsers that do not support gradients */    
+    background: -webkit-linear-gradient(left, #00aaa5 , #0079c8); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #00aaa5, #0079c8); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #00aaa5, #0079c8); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #00aaa5 , #0079c8); /* Standard syntax (must be last) */
+}
+
+.card-title {
+    text-align: right;
+}
+
+.data-list {
+    size: 8px !important;
+}
+
+.section-title {
+    text-align: right;
+    direction: rtl;
+}
+
+.section-title-un {
+    text-align: right;
+    direction: rtl;
+    visibility: hidden;
+}
+
+/* .rw1 {
+    display: none;
+}
+
+.rw2 {
+    display: none;
+}
+
+.rw3 {
+    display: none;
+}
+
+.rw4 {
+    display: none;
+} */
