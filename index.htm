@@ -38,12 +38,13 @@
                                 <input placeholder="داده" id="dataInput" type="text" class="validate">
                             </div>
                             <br/>
-                            <div class="input-field col s12">
-                                <input placeholder="دسته بندی" id="catInput" type="text" class="validate">
-                            </div>
                             <br/>
-                            <a class="waves-effect waves-light btn addData">افزودن داده</a>
-                            <a class="waves-effect waves-light btn submitData">ثبت</a>
+                            <div class="row">
+                                    <a class="waves-effect waves-light btn addData">افزودن داده</a>
+                                    <a class="waves-effect waves-light btn submitData">ثبت</a>
+                                    <a class="waves-effect waves-light btn resetData">بازنشانی</a>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -121,6 +122,18 @@
     <!-- Mean section -->
     <div class="container rw2">
         <div class="row">
+                <div class="col m4 s12 geoDump">
+                        <p class="section-title-un">میانگین</p>
+                        <div class="card" id="some">
+                            <div class="card-content">
+                                <span class="section-title card-title" style="font-size:16px">میانگین هندسی</span>
+                                <p class="geoMean"></p>
+                            </div>
+                            <div class="card-action" style="direction:rtl;text-align:right">
+                                میانگین هندسی در ریاضیات، برابر است با ریشه nاُم از حاصلضرب n متغیر.
+                            </div>
+                        </div>
+                    </div>
             <div class="col m4 s12">
                 <p class="section-title-un">میانگین</p>
                 <div class="card" id="some">
@@ -131,18 +144,6 @@
                     <div class="card-action" style="direction:rtl;text-align:right">
                         در دانش آمار میانگین حسابی یا متوسط حسابی (به انگلیسی: Arithmetic mean) نوعی سنجش گرایش به مرکز است، و عبارت است از مجموع
                         مقادیر موجود در یک مجموعه داده‌ها تقسیم بر تعداد آن‌ها.
-                    </div>
-                </div>
-            </div>
-            <div class="col m4 s12">
-                <p class="section-title-un">میانگین</p>
-                <div class="card" id="some">
-                    <div class="card-content">
-                        <span class="section-title card-title" style="font-size:16px">میانگین هندسی</span>
-                        <p class="geoMean"></p>
-                    </div>
-                    <div class="card-action" style="direction:rtl;text-align:right">
-                        میانگین هندسی در ریاضیات، برابر است با ریشه nاُم از حاصلضرب n متغیر.
                     </div>
                 </div>
             </div>
@@ -253,12 +254,50 @@
     <div class="container rw5">
         <div class="row">
             <div class="col m8 s12">
-                <div class="card" id="bars" style="margin-top:-20vh">
+                <div class="card" id="bars" style="margin-top:-24vh">
 
+                </div>
+            </div>
+            <div class="col m4 s12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">هیستوگرام</span>
+                            در علم آمار هیستوگرام یا بافت‌نگار یک نمودار ستونی و پله‌ای برای نشان دادن داده‌ها است.
+                            
+                            برای نمونه بافت‌نگار فراوانی، نمودار مستطیلی با پایه‌ای به پهنای یک واحد بر روی هر مقدار مشاهده شده است که ارتفاع هر ستون آن برابر با فراوانی داده مورد نظر همخوانی دارد
+                            
+                            نمودار بافت‌نگار همانند نمودار ستونی است و یگانه اختلافی که بین این دو وجود دارد، نمایش ستون‌هاست.
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="container rw6">
+            <div class="row">
+                <div class="col m4 s12">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">نمودار جعبه ای</span>
+                            در آمار توصیفی نمودار جعبه‌ای نموداری است که برای توصیف تغییرات داده به کار می‌رود. در این نمودار از جعبه‌ای برای نمایش فاصله بین چارک اول و سوم استفاده می‌شود و خطی در داخل جعبه میانه (چارک دوم) را مشخص می‌کند. خارج از جعبه حداقل و حداکثر مقدار داده را نیز مشخص می‌نمایند. گهگاه نمونه‌های خارج از محدوده نیز به صورت نقاطی نشان داده می‌شوند.
+                         </div>
+                    </div>
+                </div>
+                <div class="col m8 s12">
+                        <div class="card" id="box" style="margin-top:-24vh">
+        
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="page-footer" style="background-color:transparent">
+                <div class="footer-copyright">
+                  <div class="container center">
+                  <a class="grey-text text-lighten-4 center" href="http://www.unierr.ir">بنیاد علمی یونیر</a>
+                  </div>
+                </div>
+              </footer>
 
 
 

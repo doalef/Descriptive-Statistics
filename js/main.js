@@ -1,9 +1,11 @@
 $(document).ready(function () {
 
     console.log('clicked')
-    var data = [];
-    var category = ['amirrrrali','amirrali','amirrrali','amirali'];
+    var data = [0, 4, 6, 8, 2];
+    var category = [];
     var divided = false;
+    var histoAttached = false;
+    var boxAttached = false;
 
     //gets called every time user clicks add data
     $('.addData').click(function () {
@@ -35,17 +37,36 @@ $(document).ready(function () {
         showStuff()
     })
 
-    function showStuff(){
-        // $(".rw1").fadeIn(500);
-        // $(".rw2").fadeIn(1000);
-        // $(".rw3").fadeIn(1500);
-        // $(".rw4").fadeIn(2000);
+    $('.resetData').click(function(){
+        reset()
+    })
+
+    function showStuff() {
+        $(".rw1").fadeIn(500);
+        $(".rw2").fadeIn(750);
+        $(".rw3").fadeIn(1000);
+        $(".rw4").fadeIn(1250);
+        $(".rw5").css( 'visibility' , 'initial', 1500);
+        $(".rw6").css( 'visibility' , 'initial', 1750);
     }
 
     function init() {
-        setHarmonicMean()
+        try {
+            setHarmonicMean()
+        }
+        catch(error){
+            console.log(error)
+            $('.harmonicMean').text('میانگین هارمونیک برای مجموعه هایی که شامل اعداد غیر مثبت هستند ممکن نیست.')
+        }
+         
+        try {
+            setGeoMean()
+        } catch (error) {
+            console.log(error)
+            $('.geoMean').text('میانگین هندسی برای مجموعه هایی که شامل اعداد غیر مثبت هستند ممکن نیست.')
+        }
+
         setAritMean()
-        setGeoMean()
         setMinData()
         setMaxData()
         setSumData()
@@ -55,7 +76,12 @@ $(document).ready(function () {
         setMedian()
         setMode()
         setSkewness()
-        setBars()
+        if (!histoAttached){
+            setHistogram()
+        }
+        if(!boxAttached){
+            setBox()
+        }
     }
 
     //calculates harmonic mean
@@ -104,7 +130,7 @@ $(document).ready(function () {
     }
 
     function setStandardDevitation() {
-        res = 'σ  = ' + ss.sampleStandardDeviation(data).toFixed(2);
+        res = 'σ  = ' + ss.standardDeviation(data).toFixed(2);
         $('.stDev').text(res)
     }
 
@@ -123,7 +149,8 @@ $(document).ready(function () {
         $('.skew').text(res);
     }
 
-    function setBars() {
+    function setHistogram() {
+        histoAttached = true;
         var d3 = Plotly.d3;
 
         var WIDTH_IN_PERCENT_OF_PARENT = 100,
@@ -148,12 +175,65 @@ $(document).ready(function () {
             title: 'histogram'
         }];
         var layout = {
-            title: 'histogram'
+            title: 'هیستوگرام'
         }
 
-        Plotly.newPlot(gd, dataa,layout);
+        Plotly.newPlot(gd, dataa, layout);
         window.onresize = function () {
             Plotly.Plots.resize(gd);
         };
+    }
+
+    function setBox() {
+        boxAttached = true;
+        var d3 = Plotly.d3;
+
+        var WIDTH_IN_PERCENT_OF_PARENT = 100,
+            HEIGHT_IN_PERCENT_OF_PARENT = 50;
+
+        var gd3 = d3.select('#box')
+            .append('div')
+            .style({
+                width: WIDTH_IN_PERCENT_OF_PARENT + '%',
+                'margin-left': (100 - WIDTH_IN_PERCENT_OF_PARENT) / 2 + '%',
+
+                height: HEIGHT_IN_PERCENT_OF_PARENT + 'vh',
+                'margin-top': (100 - HEIGHT_IN_PERCENT_OF_PARENT) / 2 + 'vh'
+            });
+
+        var gd = gd3.node();
+        var chart = [{
+            //y: data,
+            x: data,
+            //values: data,
+            type: 'box'
+        }];
+        var layout = {
+            title: 'نمودار جعبه ای'
+        }
+
+        Plotly.newPlot(gd, chart, layout);
+        window.onresize = function () {
+            Plotly.Plots.resize(gd);
+        };
+    }
+
+    function removeChart(){
+        $('.js-plotly-plot').remove();
+        boxAttached = false;
+        histoAttached = false;
+    }
+
+    function reset(){
+        data = [];
+        removeChart();
+        //removeBox();
+        $(".rw1").fadeOut(500);
+        $(".rw2").fadeOut(750);
+        $(".rw3").fadeOut(1000);
+        $(".rw4").fadeOut(1250);
+        $(".rw5").css( 'visibility' , 'hidden', 1500);
+        $(".rw6").css( 'visibility' , 'hidden', 1750);
+        $('#dataShowCase').text('');
     }
 });
