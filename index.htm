@@ -11,7 +11,7 @@
     <script src="js/plotly.min.js" type="text/javascript"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
-
+    <script src="js/materialize.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -40,9 +40,7 @@
                             <br/>
                             <br/>
                             <div class="row">
-                                    <a class="waves-effect waves-light btn addData">افزودن داده</a>
-                                    <a class="waves-effect waves-light btn submitData">ثبت</a>
-                                    <a class="waves-effect waves-light btn resetData">بازنشانی</a>
+                                <a class="waves-effect waves-light btn addData">افزودن داده</a>
                             </div>
 
                         </div>
@@ -55,14 +53,14 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title data-list" style="font-size:20px">لیست داده های ورودی</span>
-                        <div class="row">
-                            <p id="dataShowCase"></p>
-                            </br>
-                            <p id="catShowCase"></p>
+                        <div class="row" id="dataShowCase">
                         </div>
+                        <a class="waves-effect waves-light btn teal-text resetData white">بازنشانی</a>
                     </div>
                 </div>
+                <a class="waves-effect waves-light center-align btn submitData">مشاهده ی نتایج</a>
             </div>
+
 
             <!-- Showing Data Card -->
             <div class="col s12 m4">
@@ -122,18 +120,18 @@
     <!-- Mean section -->
     <div class="container rw2">
         <div class="row">
-                <div class="col m4 s12 geoDump">
-                        <p class="section-title-un">میانگین</p>
-                        <div class="card" id="some">
-                            <div class="card-content">
-                                <span class="section-title card-title" style="font-size:16px">میانگین هندسی</span>
-                                <p class="geoMean"></p>
-                            </div>
-                            <div class="card-action" style="direction:rtl;text-align:right">
-                                میانگین هندسی در ریاضیات، برابر است با ریشه nاُم از حاصلضرب n متغیر.
-                            </div>
-                        </div>
+            <div class="col m4 s12 geoDump">
+                <p class="section-title-un">میانگین</p>
+                <div class="card" id="some">
+                    <div class="card-content">
+                        <span class="section-title card-title" style="font-size:16px">میانگین هندسی</span>
+                        <p class="geoMean"></p>
                     </div>
+                    <div class="card-action" style="direction:rtl;text-align:right">
+                        میانگین هندسی در ریاضیات، برابر است با ریشه nاُم از حاصلضرب n متغیر.
+                    </div>
+                </div>
+            </div>
             <div class="col m4 s12">
                 <p class="section-title-un">میانگین</p>
                 <div class="card" id="some">
@@ -262,11 +260,10 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">هیستوگرام</span>
-                            در علم آمار هیستوگرام یا بافت‌نگار یک نمودار ستونی و پله‌ای برای نشان دادن داده‌ها است.
-                            
-                            برای نمونه بافت‌نگار فراوانی، نمودار مستطیلی با پایه‌ای به پهنای یک واحد بر روی هر مقدار مشاهده شده است که ارتفاع هر ستون آن برابر با فراوانی داده مورد نظر همخوانی دارد
-                            
-                            نمودار بافت‌نگار همانند نمودار ستونی است و یگانه اختلافی که بین این دو وجود دارد، نمایش ستون‌هاست.
+                        در علم آمار هیستوگرام یا بافت‌نگار یک نمودار ستونی و پله‌ای برای نشان دادن داده‌ها است. برای نمونه بافت‌نگار فراوانی، نمودار
+                        مستطیلی با پایه‌ای به پهنای یک واحد بر روی هر مقدار مشاهده شده است که ارتفاع هر ستون آن برابر با
+                        فراوانی داده مورد نظر همخوانی دارد نمودار بافت‌نگار همانند نمودار ستونی است و یگانه اختلافی که بین
+                        این دو وجود دارد، نمایش ستون‌هاست.
                     </div>
                 </div>
             </div>
@@ -274,36 +271,39 @@
     </div>
 
     <div class="container rw6">
-            <div class="row">
-                <div class="col m4 s12">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title">نمودار جعبه ای</span>
-                            در آمار توصیفی نمودار جعبه‌ای نموداری است که برای توصیف تغییرات داده به کار می‌رود. در این نمودار از جعبه‌ای برای نمایش فاصله بین چارک اول و سوم استفاده می‌شود و خطی در داخل جعبه میانه (چارک دوم) را مشخص می‌کند. خارج از جعبه حداقل و حداکثر مقدار داده را نیز مشخص می‌نمایند. گهگاه نمونه‌های خارج از محدوده نیز به صورت نقاطی نشان داده می‌شوند.
-                         </div>
+        <div class="row">
+            <div class="col m4 s12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">نمودار جعبه ای</span>
+                        در آمار توصیفی نمودار جعبه‌ای نموداری است که برای توصیف تغییرات داده به کار می‌رود. در این نمودار از جعبه‌ای برای نمایش فاصله
+                        بین چارک اول و سوم استفاده می‌شود و خطی در داخل جعبه میانه (چارک دوم) را مشخص می‌کند. خارج از جعبه
+                        حداقل و حداکثر مقدار داده را نیز مشخص می‌نمایند. گهگاه نمونه‌های خارج از محدوده نیز به صورت نقاطی
+                        نشان داده می‌شوند.
                     </div>
                 </div>
-                <div class="col m8 s12">
-                        <div class="card" id="box" style="margin-top:-24vh">
-        
-                        </div>
+            </div>
+            <div class="col m8 s12">
+                <div class="card" id="box" style="margin-top:-24vh">
+
                 </div>
             </div>
         </div>
+    </div>
 
-        <footer class="page-footer" style="background-color:transparent">
-                <div class="footer-copyright">
-                  <div class="container center">
-                  <a class="grey-text text-lighten-4 center" href="http://www.unierr.ir">بنیاد علمی یونیر</a>
-                  </div>
-                </div>
-              </footer>
+    <footer class="page-footer" style="background-color:transparent">
+        <div class="footer-copyright">
+            <div class="container center">
+                <a class="grey-text text-lighten-4 center" href="http://www.unierr.ir">بنیاد علمی یونیر</a>
+            </div>
+        </div>
+    </footer>
 
 
 
 
     <!-- Compiled and minified JavaScript -->
-    <script src="js/materialize.min.js" type="text/javascript"></script>
+
     <script src="js/main.js" type="text/javascript"></script>
 
 
