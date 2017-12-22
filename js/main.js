@@ -1,64 +1,82 @@
 $(document).ready(function () {
 
+    function countDecimals(value) {
+        if (Math.floor(value) === value) return 0;
+        return value.toString().split(".")[1].length || 0;
+    }
+    var gg = 2.333;
+    console.log(countDecimals(gg))
+    console.log([12, 14, 51, 12, 10, 9, 16, 1].sort(function (a, b) {
+        return a - b
+    }).filter(outliers()));
+
+
+
     console.log('clicked')
-    var data = [0, 4, 6, 8, 2];
+    var data = [];
     var category = [];
+    var binSize;
     var divided = false;
     var histoAttached = false;
     var boxAttached = false;
 
     //gets called every time user clicks add data
     $('.addData').click(function () {
+
         var x = $('#dataInput').val();
-        var y = $('#catInput').val();
-        if (x && !y) {
+        var y = $('#bins').val();
+        binSize = y;
+        if (x || x == 0) {
             $('#dataInput').removeAttr('value');
             data.push(parseInt(x))
-            $('#dataShowCase').append(x + ',');
+            $('#dataShowCase').append(x + ',' + ' ');
             $('#dataInput').val('');
-        } else if (x && y) {
-            divided = true;
-            $('#dataInput').removeAttr('value');
-            data.push(parseInt(x))
-            $('#dataShowCase').append(x + ',');
-            $('#dataInput').val('');
-            $('#catInput').removeAttr('value');
-            data.push(y);
-            $('#catShowCase').append(y + ',');
-            $('#catInput').val('');
         }
     })
 
 
     //gets called every time user clicks on submit
     $('.submitData').click(function () {
-        //console.log(ss.mean(data).toFixed(2))
-        init()
-        showStuff()
+
+        data = data.filter(outliers());
+        data.sort(function (a, b) {
+            return a - b
+        });
+        console.log(data);
+
+        if ($('#test6').is(':checked')) {
+            correctNumbers();
+        }
+        init();
+        showStuff();
     })
 
-    $('.resetData').click(function(){
+    $('.resetData').click(function () {
         reset()
     })
+
+    function correctNumbers() {
+        data[0] = (data[0] - 0.5);
+        data[data.length - 1] = (data[data.length - 1] + 0.5);
+    }
 
     function showStuff() {
         $(".rw1").fadeIn(500);
         $(".rw2").fadeIn(750);
         $(".rw3").fadeIn(1000);
         $(".rw4").fadeIn(1250);
-        $(".rw5").css( 'visibility' , 'initial', 1500);
-        $(".rw6").css( 'visibility' , 'initial', 1750);
+        $(".rw5").css('visibility', 'initial', 1500);
+        $(".rw6").css('visibility', 'initial', 1750);
     }
 
     function init() {
         try {
             setHarmonicMean()
-        }
-        catch(error){
+        } catch (error) {
             console.log(error)
             $('.harmonicMean').text('میانگین هارمونیک برای مجموعه هایی که شامل اعداد غیر مثبت هستند ممکن نیست.')
         }
-         
+
         try {
             setGeoMean()
         } catch (error) {
@@ -76,19 +94,18 @@ $(document).ready(function () {
         setMedian()
         setMode()
         setSkewness()
-        if (!histoAttached){
+        if (!histoAttached) {
             setHistogram()
         }
-        if(!boxAttached){
+        if (!boxAttached) {
             setBox()
         }
     }
 
     //calculates harmonic mean
     function setHarmonicMean() {
-        console.log(ss.harmonicMean(data).toFixed(2))
         var res = 'mean = ' + ss.harmonicMean(data).toFixed(2);
-        $('.harmonicMean').text(res);
+        $('.harmonicMean').append(res);
     }
 
     //calculates normal mean
@@ -109,6 +126,7 @@ $(document).ready(function () {
         $('.minData').text(res)
     }
 
+    //calculates the biggest data
     function setMaxData() {
         res = 'max = ' + ss.max(data)
         $('.maxData').text(res)
@@ -167,13 +185,21 @@ $(document).ready(function () {
             });
 
         var gd = gd3.node();
-        var dataa = [{
-            //y: data,
-            x: data,
-            //values: data,
-            type: 'histogram',
-            title: 'histogram'
-        }];
+        var dataa;
+            dataa = [{
+                //y: data,
+                x: data,
+                //values: data,
+                type: 'histogram',
+                title: 'histogram',
+                autobinx: false,
+                xbins: {
+                    start: data[0],
+                    end: data[data.length - 1],
+                    size: ((data[data.length - 1]-data[0])/binSize),
+                }
+            }];
+       
         var layout = {
             title: 'هیستوگرام'
         }
@@ -182,6 +208,11 @@ $(document).ready(function () {
         window.onresize = function () {
             Plotly.Plots.resize(gd);
         };
+    }
+
+    function sizeBin() {
+        console.log('result' , ((ss.max(data) - ss.min(data)) / binSize));
+        return ((ss.max(data) - ss.min(data)) / binSize);
     }
 
     function setBox() {
@@ -206,7 +237,7 @@ $(document).ready(function () {
             //y: data,
             x: data,
             //values: data,
-            type: 'box'
+            type: 'box',
         }];
         var layout = {
             title: 'نمودار جعبه ای'
@@ -218,13 +249,13 @@ $(document).ready(function () {
         };
     }
 
-    function removeChart(){
+    function removeChart() {
         $('.js-plotly-plot').remove();
         boxAttached = false;
         histoAttached = false;
     }
 
-    function reset(){
+    function reset() {
         data = [];
         removeChart();
         //removeBox();
@@ -232,8 +263,8 @@ $(document).ready(function () {
         $(".rw2").fadeOut(750);
         $(".rw3").fadeOut(1000);
         $(".rw4").fadeOut(1250);
-        $(".rw5").css( 'visibility' , 'hidden', 1500);
-        $(".rw6").css( 'visibility' , 'hidden', 1750);
+        $(".rw5").css('visibility', 'hidden', 1500);
+        $(".rw6").css('visibility', 'hidden', 1750);
         $('#dataShowCase').text('');
     }
 });
